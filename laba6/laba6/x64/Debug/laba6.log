@@ -1,0 +1,4 @@
+﻿  laba6.cpp
+C:\Users\invor\Рабочий стол\laba\laba6\laba6.cpp(10,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\invor\Рабочий стол\laba\laba6\laba6.cpp(32,15): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  laba6.vcxproj -> C:\Users\invor\Рабочий стол\laba\laba6\x64\Debug\laba6.exe
