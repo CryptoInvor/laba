@@ -1,0 +1,8 @@
+﻿  laba1.cpp
+C:\Users\User\Desktop\laba\laba1\laba1.cpp(33,9): warning C4551: в вызове функции отсутствует список аргументов
+  Создание кода
+  Previous IPDB was built with incompatible compiler, fall back to full compilation.
+C:\Users\User\Desktop\laba\laba1\laba1.cpp(37): warning C4715: divide: значение возвращается не при всех путях выполнения
+  All 142 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  laba1.vcxproj -> C:\Users\User\Desktop\laba\laba1\x64\Release\laba1.exe
