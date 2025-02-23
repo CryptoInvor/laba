@@ -12,21 +12,21 @@ using namespace std;
 
 struct laptop {
     string name;
-    string size;
+    string size1;
     string weigth;
     string price;
 };
 
-string read(int number) {
+string read(int number, int count) {
         setlocale(LC_CTYPE, "");
         ifstream in("note.txt"); // окрываем файл для чтения
         if (in.is_open())
         {
             string line = "";
             getline(in, line);
-            int length = stoi(line) + (stoi(line) * 4) ;
+            int length = 1 + (stoi(line) * 4) ;
             for (int i = 0; i < length; i++) {
-                if (i == number) {
+                if (i == number + (count * 4)) {
                     return line;
                 }
                 else {
@@ -43,54 +43,166 @@ string read(int number) {
 void name(laptop* array, int len){
     vector<string> names;
     vector<int> pos;
+    int rep = 0, pos1 = 0;
     bool repeat = false;
     for (int i = 0; i < len; i++) {
-        names.push_back("");
+        names.push_back(array[i].name);
     }
-    names[0] = array[0].name;
-    pos.push_back(0);
-    if (len > 1) {
-        for (int i = 0; i < len-1; i++) {
-            for (int j = i; j < len - 1; j++) {
-                cout << "names[i] " << names[i] << endl;
-                cout << "array[j+1].name " << array[j + 1].name << endl;
-                cout << "(names[i] == array[j + 1].name)" << (names[i] == array[j + 1].name) << endl;
-                if (names[i] == array[j + 1].name) {
-                    repeat = true;
-                    break;
-                }
-            }
-            if (!repeat) {
-                names.push_back(array[i].name);
-            }
-            else {
-                repeat = false;
-            }
-        }
+ 
+    for (int i = 0; i < names.size(); i++) {
+         for (int j = i; j < names.size()-1; j++) {
+             if (names[i] == names[j + 1]) {
 
-        for (int i = 0; i < len; i++) {
-            for (int j = i; j < len - 1; j++) {
-                if (names[i] == array[j + 1].name) {
-                    pos.push_back(j + 1);
-                }
-            }
-        }
+                 rep += 1;
+                 pos.push_back(j + 1);
+             }
+         }
+         if (rep == names.size()-1) {
+             break;
+
+         }
+         else {
+             i += rep;
+             rep = 0;
+         }
     }
+
+    for (int i = 0; i < pos.size(); i++) {
+        names.erase(names.begin() + (pos[i] - i));
+    }
+
     for (int i = 0; i < names.size(); i++) {
         cout << names[i] << endl;
-        for (int j = 0; j < pos.size(); j++) {
-            if (names[i] == array[pos[j]].name) {
-                cout << "   Ноутбук " << pos[j] + 1 << endl;
+        for (int j = 0; j < len; j++) {
+            if (names[i] == array[j].name) {
+                cout << "   Ноутбук " << j + 1 << endl;
             }
         }
     }
 }
 
-void size(laptop* array, int len) {}
+void size(laptop* array, int len) {
+    vector<string> names;
+    vector<int> pos;
+    int rep = 0, pos1 = 0;
+    bool repeat = false;
+    for (int i = 0; i < len; i++) {
 
-void weigth(laptop* array, int len) {}
+        names.push_back(array[i].size1);
+    }
 
-void price(laptop* array, int len) {}
+    for (int i = 0; i < names.size(); i++) {
+        for (int j = i; j < names.size() - 1; j++) {
+            if (names[i] == names[j + 1]) {
+                rep += 1;
+                pos.push_back(j + 1);
+            }
+        }
+        if (rep == names.size() - 1) {
+            break;
+        }
+        else {
+            i += rep;
+            rep = 0;
+        }
+    }
+
+    for (int i = 0; i < pos.size(); i++) {
+        names.erase(names.begin() + (pos[i] - i));
+        
+    }
+
+    for (int i = 0; i < names.size(); i++) {
+        cout << names[i] << endl;
+        for (int j = 0; j < len; j++) {
+            if (names[i] == array[j].size1) {
+                cout << "   Ноутбук " << j + 1 << endl;
+            }
+        }
+    }
+}
+
+void weigth(laptop* array, int len) {
+    vector<string> names;
+    vector<int> pos;
+    int rep = 0, pos1 = 0;
+    bool repeat = false;
+    for (int i = 0; i < len; i++) {
+        names.push_back(array[i].weigth);
+    }
+
+    for (int i = 0; i < names.size(); i++) {
+        for (int j = i; j < names.size() - 1; j++) {
+            if (names[i] == names[j + 1]) {
+
+                rep += 1;
+                pos.push_back(j + 1);
+            }
+        }
+        if (rep == names.size() - 1) {
+            break;
+
+        }
+        else {
+            i += rep;
+            rep = 0;
+        }
+    }
+
+    for (int i = 0; i < pos.size(); i++) {
+        names.erase(names.begin() + (pos[i] - i));
+    }
+
+    for (int i = 0; i < names.size(); i++) {
+        cout << names[i] << endl;
+        for (int j = 0; j < len; j++) {
+            if (names[i] == array[j].weigth) {
+                cout << "   Ноутбук " << j + 1 << endl;
+            }
+        }
+    }
+}
+
+void price(laptop* array, int len) {
+    vector<string> names;
+    vector<int> pos;
+    int rep = 0, pos1 = 0;
+    bool repeat = false;
+    for (int i = 0; i < len; i++) {
+        names.push_back(array[i].price);
+    }
+
+    for (int i = 0; i < names.size(); i++) {
+        for (int j = i; j < names.size() - 1; j++) {
+            if (names[i] == names[j + 1]) {
+
+                rep += 1;
+                pos.push_back(j + 1);
+            }
+        }
+        if (rep == names.size() - 1) {
+            break;
+
+        }
+        else {
+            i += rep;
+            rep = 0;
+        }
+    }
+
+    for (int i = 0; i < pos.size(); i++) {
+        names.erase(names.begin() + (pos[i] - i));
+    }
+
+    for (int i = 0; i < names.size(); i++) {
+        cout << names[i] << endl;
+        for (int j = 0; j < len; j++) {
+            if (names[i] == array[j].price) {
+                cout << "   Ноутбук " << j + 1 << endl;
+            }
+        }
+    }
+}
 
 void search(laptop* array, int len) {
     setlocale(LC_CTYPE, "");
@@ -135,7 +247,6 @@ void search(laptop* array, int len) {
             case 3: weigth(array, len);  break;
             case 4: price(array, len);  break;
             case 5: return;       break;
-
             }
 
             _getch();
@@ -153,22 +264,22 @@ int main()
     setlocale(LC_CTYPE, "");
     
     int count = 0, count2 = 0;
-    int len = stoi(read(0));
+    int len = stoi(read(0, 0));
     laptop* array;
     array = new laptop[len];
     while (count2 < len) {
         count += 1;
         if (count == 1) {
-            array[count2].name = read(count);
+            array[count2].name = read(count, count2);
         }
         else if (count == 2) {
-            array[count2].size = read(count);
+            array[count2].size1 = read(count, count2);
         }
         else if (count == 3) {
-            array[count2].weigth = read(count);
+            array[count2].weigth = read(count, count2);
         }
         else if (count == 4) {
-            array[count2].price = read(count);
+            array[count2].price = read(count, count2);
             count2 += 1;
             count = 0;
         }
