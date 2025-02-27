@@ -6,11 +6,12 @@
 using namespace std;
 
 
-void serach_char(map<string, int> text) {
+void search_char(map<string, int> text) {
+    system("cls");
     map<string, int>::iterator it = text.begin();
     string o;
     char chr;
-    cout << "Введите искомое слово: ";
+    cout << "Введите искомую букву: ";
     cin >> chr;
     while (it != text.end()) {
         if (it->first[0] == chr) {
@@ -138,7 +139,6 @@ void write(map<string, int> text){
         out.close();
         cin.clear();
         cout << "Запись прошла успешно" << endl;
-        cin >> inp;
     }
 }
 
@@ -175,10 +175,11 @@ int main()
         system("cls");
         cout << "Доступные парамерты поиска: " << endl;
         cout << "1) по имени(введите name)" << endl;
-        cout << "2) по числу(введите num)" << endl;
-        cout << "3) наибольший элемент(введите max)" << endl;
-        cout << "4) наименьший элемент(введите min) " << endl;
-        cout << "5) показать весь словарь(введите show) " << endl;
+        cout << "2) по первой букве слова(введите char) " << endl;
+        cout << "3) по числу(введите num)" << endl;
+        cout << "4) наибольший элемент(введите max)" << endl;
+        cout << "5) наименьший элемент(введите min) " << endl;
+        cout << "6) показать весь словарь(введите show) " << endl;
         cout << "Для завершения работы программы напишите 'выход' или 'exit' " << endl;
         if ((input == "exit") || (input == "выход") || (input == "Выход") || (input == "Exit")) { 
             write(text);
@@ -187,6 +188,10 @@ int main()
         cin >> input;
         if (input == "name") {
             search_name(text);
+            input = "";
+        }
+        else if (input == "char") {
+            search_char(text);
             input = "";
         }
         else if (input == "num") {
