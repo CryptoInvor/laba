@@ -51,8 +51,8 @@ bool task2(char words[], char sub[], int subword, int word) { // функция 
 	char sub1[100]{};
 	bool flag = false;
 	int count = 0, count2 = subword, count3 = 0, count4 = 0, counter = 0;
-	for (int i = 0; i < count2; i++) {
-		for (int w = i + 1; w < count2; w++) {
+/*	for (int i = 0; i < count2; i++) {
+		for (int w = i + 1; w < count2; w++) { //поиск и удаление повторяющихся элементов
 			if (sub[i] == sub[w]) {
 				subword -= 1;
 				flag = true;
@@ -67,11 +67,11 @@ bool task2(char words[], char sub[], int subword, int word) { // функция 
 			flag = false;
 		}
 	}
-	
+	*/
 	if (word >= subword) {
-		for (int i = 0; i <= (word - subword); i++) {
+		for (int i = 0; i <= (word - subword); i++) { //  проверка слова на наличие заданной подстроки
 			for (int j = 0; j < subword; j++) {
-				if (words[i + j] == sub1[j]) {
+				if (words[i + j] == sub[j]) {
 					counter += 1;
 				}
 			}
@@ -188,14 +188,17 @@ switch (stoi(argv[1])) {
 					return 0;// вывод если true
 				}
 				else {
-					//cout << "подстроки " << subwords << " не обнаружено в данной строке" << endl;
+					
 				}
+				
 				for (int k = 0; k < counter; k++) {
 					taskwords[k] = (char)0;
 				}
 				counter = 0;
 			}
+			
 		}
+		cout << "подстроки " << subwords << " не обнаружено в данной строке" << endl;
 	}break;
 	case 2: {
 		string words1;

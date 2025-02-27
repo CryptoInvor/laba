@@ -4,7 +4,7 @@
 using namespace std;
 
 
-void print(int* array, int lenght) { // вывод массивов
+void print(int* array, int lenght) { // вывод всех элементов массива с их адресами и поиск наименьшего элемента
     int smallest = 9999999;
     for (int j = 0; j < lenght; j++) {
         if (array[j] < smallest) { smallest = array[j]; }
@@ -18,16 +18,24 @@ void print(int* array, int lenght) { // вывод массивов
 }
 
 
-void scan(int ** array, int rows, int columns) {
+void scan(int ** array, int rows, int columns) { // вывод каждой строки двумерного массива с проверкой на возрастание
     int exception = 0;
     for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns - 1; j++) {
-            cout << array[i][j] << " ";
-            if ((array[i][j] < array[i][j + 1])) {
-
+        exception = 0;
+        if (columns == 1) {
+            for (int j = 0; j < columns; j++) {
+                cout << array[i][j] << " ";
             }
-            else {
-                exception += 1;
+        }
+        else {
+            for (int j = 0; j < columns - 1; j++) {
+                cout << array[i][j] << " " << array[i][j+1] << " ";
+                if ((array[i][j] < array[i][j + 1])) {
+
+                }
+                else {
+                    exception += 1;
+                }
             }
         }
         if (exception == 0) {
@@ -74,27 +82,27 @@ int main(int argc, char* argv[])
         int columns; // колонный
         cout << "кол-во рядов: ";
         cin >> rows;
-        if ((rows <= 0)) {
+        if ((rows <= 0)) { // обработка ошибки
             cout << "количество рядов должно быть положительным числом больше нуля" << endl;
             return 0;
         }
         cout << "кол-во колонн: ";
         cin >> columns;
-        if ((columns <= 0)) {
+        if ((columns <= 0)) {// обработка ошибки
             cout << "количество колонн должно быть положительным числом больше нуля" << endl;
             return 0;
         }
-        else if (rows == columns) {
+        else if (rows == columns) {// обработка ошибки
             cout << "количество колонн не должно совпадать с количеством рядов" << endl;
             return 0;
         }
-        int** array{ new int* [rows] };
+        int** array{ new int* [rows] }; // создание двумерного массива
         for (int i = 0; i < rows; i++) {
             array[i] = new int[columns] {};
         }
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                array[i][j] = rand() % 101 - 50;
+                array[i][j] = rand() % 102 - 50; // заполнение двумерного массива случайными числами от -50 до 50
                 }
             }
 

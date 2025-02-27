@@ -10,7 +10,7 @@ vector<int> fill(){
     srand(time(NULL));
     vector<int> s;
     cout << "Вектор состоит из следующих элементов: ";
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 50; i++) { // случайное генерирование и вывод всех элементов вектора
         s.push_back(rand() % 100 + 1);
         
         if (i != 49) {
@@ -26,11 +26,11 @@ vector<int> fill(){
 
 vector<int> middle(vector<int> s, int k) {
     int sum = 0;
-    for (int i = 0; i < s.size(); i++) {
+    for (int i = 0; i < s.size(); i++) { // подсчет среднего арифметического
         sum += s[i];
     }
     sum = sum / s.size();
-    cout << "среднее значение: " << sum << endl;
+    cout << "среднее значение: " << sum << endl; // вывод и удаление среднего арифметического
     s.insert(s.begin() + k, sum);
     return s;
 }
@@ -38,7 +38,7 @@ vector<int> middle(vector<int> s, int k) {
 
 vector<int> del(vector<int> s, int k) {
     int small = 9999999, big = 0, place = 0;
-    if (k == 0) {
+    if (k == 0) { // поиск наименьшего значения
         for (int i = 0; i < s.size(); i++) {
             if (s[i] < small) {
                 small = s[i];
@@ -49,11 +49,11 @@ vector<int> del(vector<int> s, int k) {
                 place = i;
             }
         }
-        cout << "Наименьшее значение: " << small << endl;
+        cout << "Наименьшее значение: " << small << endl; // вывод и удаление наименьшего элемента
         s.erase(s.begin() + place);
     }
     else {
-        for (int i = 0; i < s.size(); i++) {
+        for (int i = 0; i < s.size(); i++) { // поиск наибольшего значения
             if (s[i] > big) {
                 big = s[i];
             }
@@ -63,7 +63,7 @@ vector<int> del(vector<int> s, int k) {
                 place = i;
             }
         }
-        cout << "Наибольшее значение: " << big << endl;
+        cout << "Наибольшее значение: " << big << endl; // вывод и удаление наибольшего значения
         s.erase(s.begin() + place);
         
     }
@@ -80,11 +80,11 @@ vector<int> del(vector<int> s, int k) {
 int main()
 {
     setlocale(LC_CTYPE,"");
-    int k, type;
+    int k, type; // инициализация и ввод переменных
     cout << "Введите положение элемента среднего значения: ";
     cin >> k;
     if (k < 0){
-        cout << "Пожалуйста, введите положотиельное значение";
+        cout << "Пожалуйста, введите положотиельное значение"; // обработка ошибки
         return 0;
     }
     cout << "Введите 0 для удаления минимального элемента, 1 для удаления максимального элеменита: ";
@@ -95,14 +95,14 @@ int main()
     }
     cout << "---------------------------" << endl;
     vector<int> element;
-    element = fill();
+    element = fill(); // заполенение вектора случайными значениями
     cout << "---------------------------" << endl;
-    element = middle(element, k);
+    element = middle(element, k); // удаление среднего арифметического всех значений вектора
     cout << "---------------------------" << endl;
-    element = del(element, type);
+    element = del(element, type); // удаление минимального или максимального элемента
     cout << "---------------------------" << endl;
     cout << "Финальный вид вектора: ";
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 50; i++) { // вывод всех элементов вектора
         if (i != 49) {
             cout << element[i] << ", ";
         }
