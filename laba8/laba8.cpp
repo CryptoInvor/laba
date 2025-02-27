@@ -15,7 +15,7 @@ void search_char(map<string, int> text) {
     cin >> chr;
     while (it != text.end()) {
         if (it->first[0] == chr) {
-            cout << it->first << " : " << it->second << endl;
+            cout << it->first << " : " << it->second << endl; // поиск и вывод по первой букве слова
         }
         ++it;
     }
@@ -27,10 +27,10 @@ void sort_max(map<string, int> text){
     map<string, int>::iterator it = text.begin();
     string o;
     system("cls");
-    cout << "Наибольшее количество повторов: " << endl;
+    cout << "Наибольшее количество повторов: " << endl; 
     int bigger = 0;
     while (it != text.end()) {
-        if (it->second > bigger) {
+        if (it->second > bigger) {// поиск наибольшего количества повторений
             bigger = it->second;
         }
         ++it;
@@ -38,7 +38,7 @@ void sort_max(map<string, int> text){
     it = text.begin();
     while (it != text.end()) {
         if (it->second == bigger) {
-            cout << it->first << " : " << it->second << endl;
+            cout << it->first << " : " << it->second << endl; // вывод наибольшего количества повторений
         }
         ++it;
     }
@@ -54,7 +54,7 @@ void sort_min(map<string, int> text){
     cout << "Наименьшее количество повторов: " << endl;
     int smaller = 999999999;
     while(it != text.end()) {
-        if (it->second < smaller) { 
+        if (it->second < smaller) { // поиск наименьшего количества повторений
             smaller = it->second;
         }
         ++it;
@@ -62,7 +62,7 @@ void sort_min(map<string, int> text){
     it = text.begin();
     while (it != text.end()) {
         if (it->second == smaller) {
-            cout << it->first << " : " << it->second << endl;
+            cout << it->first << " : " << it->second << endl; // вывод наименьшего количества повторений
         }
         ++it;
     }
@@ -76,7 +76,7 @@ void search_name(map<string, int> text){
     cout << "Введите искомое слово: ";
     cin >> name;
     if (text.count(name) == 1) {
-        cout << name << " : " << text[name] << endl;
+        cout << name << " : " << text[name] << endl; // вывести определенное слово
     }
     else {
         cout << "Такого слова нет в словаре" << endl;
@@ -97,7 +97,7 @@ void search_num(map<string, int> text) {
     }
     while (it != text.end()) {
         if (it->second == num) {
-                cout << it->first << " : " << num << endl;
+                cout << it->first << " : " << num << endl; // вывод всех слов с конкретным значением повторений
                 cin >> o;
                 return;
         }
@@ -113,7 +113,7 @@ void show(map<string, int> text) {
     map<string, int>::iterator it = text.begin();
     string o;
     while (it != text.end()) {
-        cout << it->first << " : " << it->second << endl;
+        cout << it->first << " : " << it->second << endl; // показать все элементы словаря
         ++it;
     }
     cin >> o;
@@ -132,7 +132,7 @@ void write(map<string, int> text){
         if (out.is_open())
         {
             while (it != text.end()) {
-                out << it->first << " : " << it->second << endl;
+                out << it->first << " : " << it->second << endl; // записываем из вектора в файл
                 ++it;
             }
         }
@@ -154,7 +154,7 @@ int main()
     {
         while (in >> line)
         {
-            text.insert(pair<string, int>(line, 0));
+            text.insert(pair<string, int>(line, 0)); // запись из файла в вектор
         }
     }
     in.close();
@@ -164,7 +164,7 @@ int main()
     {
         while (in >> line)
         {
-            text[line] += 1;
+            text[line] += 1; // подсчет повторений
         }
     }
     in.close();
@@ -172,42 +172,29 @@ int main()
 
     bool exit = false;
     while (exit == 0) {
-        system("cls");
+        system("cls"); // реализация меню выбора типа сортировки
+        cout << "Введите номер выбранного параметра" << endl;
         cout << "Доступные парамерты поиска: " << endl;
-        cout << "1) по имени(введите name)" << endl;
-        cout << "2) по первой букве слова(введите char) " << endl;
-        cout << "3) по числу(введите num)" << endl;
-        cout << "4) наибольший элемент(введите max)" << endl;
-        cout << "5) наименьший элемент(введите min) " << endl;
-        cout << "6) показать весь словарь(введите show) " << endl;
+        cout << "1) по имени" << endl;
+        cout << "2) по первой букве слова " << endl;
+        cout << "3) по числу" << endl;
+        cout << "4) наибольший элемент" << endl;
+        cout << "5) наименьший элемент" << endl;
+        cout << "6) показать весь словарь" << endl;
         cout << "Для завершения работы программы напишите 'выход' или 'exit' " << endl;
-        if ((input == "exit") || (input == "выход") || (input == "Выход") || (input == "Exit")) { 
-            write(text);
-            break; 
-        }
         cin >> input;
-        if (input == "name") {
-            search_name(text);
-            input = "";
+        if ((input == "exit") || (input == "выход") || (input == "Выход") || (input == "Exit")) {
+            write(text);
+            break;
         }
-        else if (input == "char") {
-            search_char(text);
-            input = "";
-        }
-        else if (input == "num") {
-            search_num(text);
-            input = "";
-        }
-        else if (input == "max") {
-            sort_max(text);
-            input = "";
-        }
-        else if (input == "min") {
-            sort_min(text);
-            input = "";
-        }
-        else if (input == "show") {
-            show(text);
+        int choise = stoi(input);
+        switch (choise) {
+        case 1: { search_name(text); }break;// сортировать по имени
+        case 2: { search_char(text); }break;// сортировать по первой букве
+        case 3: { search_num(text); }break;// сортировать по числу
+        case 4: { sort_max(text); }break;// сортировать по максимальному количеству повторений
+        case 5: { sort_min(text); }break;// сортировать по минимальному количеству повторений
+        case 6: { show(text); }break;// показать все
             input = "";
         }
         

@@ -1,5 +1,5 @@
 bek : 4
 bu : 2
-i : 2
+i : 3
 po : 5
-poe2 : 8
+poe2 : 6
