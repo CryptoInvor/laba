@@ -68,7 +68,7 @@ static vector<dot> sort_x(vector<dot> sorted) {
             if (sorted[i].x < smallest) { smallest = sorted[i].x; } 
         }
         for (int i = 0; i < sorted.size(); i++) {
-            if (sorted[i].x == smallest) { smallest = i; }
+            if (sorted[i].x == smallest) { smallest = i; break; }
         }
         result.push_back(sorted[smallest]);
         sorted.erase(sorted.begin() + smallest);
